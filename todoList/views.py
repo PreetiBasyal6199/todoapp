@@ -16,13 +16,32 @@ def index(request):
         'items':todo_list
 
     }
-    return render(request,'index.html',context)
+    return render(request,'home.html',context)
 
 def delete_item(request,id):
-    if request.method=='POST':
-        todo_item=todoList.objects.get(pk=id)
-        todo_item.delete()
-        return HttpResponseRedirect('/')
+    todo_item=todoList.objects.get(pk=id)
+    todo_item.delete()
+    items=todoList.objects.all()
+    form=todoForm()
+    context={
+        'form':form,
+        'items':items
+
+    }
+    return render(request,'home.html',context)
+def add_item(request):
+    if request.method =="POST":
+        form=todoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    form=todoForm()
+    context={
+        'form':form,
+       
+
+    }
+    return render(request,'add.html',context)
 
 def edit_item(request,pk):
     get_data=get_object_or_404(todoList,pk=pk)
@@ -32,4 +51,4 @@ def edit_item(request,pk):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
-    return render(request,'update.html',{'form':form})
+    return render(request,'edit.html',{'form':form})

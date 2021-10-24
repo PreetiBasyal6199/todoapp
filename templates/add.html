@@ -12,37 +12,46 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-
-    <title>Hello, world!</title>
     <style>
+      a.btn.btn-primary {
+        float: right;
+        margin: 0px 4px;
+      }
       .update_form {
         text-align: center;
         padding: 3%;
-        background: rgb(147, 197, 189);
-        border-radius: 25px;
-        /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4),
-          0 6px 20px 0 rgba(0, 0, 0, 0.36); */
+        background-color: ghostwhite;
+      }
+      label {
+        padding: 18px;
       }
     </style>
+
+    <title>todo-applicatin</title>
   </head>
   <body>
-    <div class="row">
-      <div class="col-md-8 offset-md-2 col-sm-12">
-        <div class="update_form">
-          <center class="row">
-            <h1>Update Item</h1>
-          </center>
-          <form method="POST" class="mt-5">
-            {% csrf_token %} {{form.as_p}}
-            <center>
-              <button value="edit" type="submit" class="btn btn-info">
-                Update
-              </button>
+    <section id="main">
+      <div class="container">
+        <div class="col-md-8 offset-md-2 col-sm-12 mt-5 border">
+          <div class="btn">
+            <a href="/" class="btn btn-secondary">Back</a>
+          </div>
+          <div class="update_form">
+            <center class="row">
+              <h1>Add Item</h1>
             </center>
-          </form>
+            <form method="POST" class="mt-5">
+              {% csrf_token %} {{form.as_p}}
+              <center>
+                <button value="edit" type="submit" class="btn btn-info">
+                  Add
+                </button>
+              </center>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
